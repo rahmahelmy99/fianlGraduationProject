@@ -126,6 +126,7 @@ export default {
 </script>
 
 <style scoped>
+
 nav {
   position: fixed !important;
   height: 70px;
@@ -188,10 +189,8 @@ img:hover {
   position: fixed;
   list-style: none;
   padding: 0px;
-  right: 300px;
-  border: #9a9a9f solid;
-  border-radius: 5px;
-  top: 46px;
+    border: #9a9a9f solid;
+    border-radius: 5px;
 }
 
 .services > li {

@@ -77,7 +77,7 @@
 
           <div>
             <li>
-              <router-link to="/useraccount"
+              <router-link to="/myaccount"
                 >حسابي <i class="fa fa-user fa-fw"></i
               ></router-link>
             </li>

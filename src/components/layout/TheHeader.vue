@@ -1,30 +1,25 @@
 لسه مفروض تتحول لراوتر لينك
 <template>
   <header>
-    <nav class="navbar-expand-lg">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
       <div class="wrapper">
         <!---->
         <input type="radio" name="slider" id="menu-btn" />
         <input type="radio" name="slider" id="close-btn" />
         <ul class="navbar-nav">
-          <label for="close-btn" class="closeBtn"
-            ><i class="fas fa-times fa-1x"></i
-          ></label>
+          <label for="close-btn" class="closeBtn"><i class="fas fa-times fa-1x"></i></label>
           <div>
             <li>
-              <router-link to="/"
-                >الرئيسيه <i class="fa fa-home fa-fw"></i
-              ></router-link>
+              <router-link to="/">الرئيسيه <i class="fa fa-home fa-fw"></i></router-link>
             </li>
 
             <li @mouseover="open" @mouseleave="hide">
               <router-link to="/volunteer-form" class="desktop-item">
-                <i class="fa fa-caret-down fa-fw"></i> {{ Symbol }}</router-link
-              >
+                <i class="fa fa-caret-down fa-fw"></i> {{ Symbol }}
+              </router-link>
               <input type="checkbox" id="showDrop" />
               <label for="showDrop" class="mobile-item">
-                <i class="fa fa-caret-down fa-fw"> </i> {{ Symbol }}</label
-              >
+                <i class="fa fa-caret-down fa-fw"> </i> {{ Symbol }}</label>
               <ul class="services drop-menus" v-show="displayserviceslist">
                 <li>
                   <router-link to="/volunteer-form">تطوع</router-link>
@@ -40,60 +35,46 @@
                   <router-link to="/vagrants">بلاغ عن مشردين</router-link>
                 </li>
                 <li>
-                  <router-link to="/homelesschildren"
-                    >بلاغ عن اطفال الشوارع</router-link
-                  >
+                  <router-link to="/homelesschildren">بلاغ عن اطفال الشوارع</router-link>
                 </li>
                 <li>
                   <router-link to="/zakat">احسب زكاة مالك</router-link>
                 </li>
                 <li>
-                  <router-link to="/awarenesslectures"
-                    >محاضرات توعويه</router-link
-                  >
+                  <router-link to="/awarenesslectures">محاضرات توعويه</router-link>
                 </li>
                 <li>
                   <router-link to="/jobs">فرص العمل</router-link>
                 </li>
                 <li>
-                  <router-link to="/supportedservices"
-                    >خدمات مدعومة</router-link
-                  >
+                  <router-link to="/supportedservices">خدمات مدعومة</router-link>
                 </li>
               </ul>
             </li>
 
             <li>
-              <router-link to="/connectus"
-                >تواصل معنا <i class="fas fa-phone-volume fa-fw"></i>
+              <router-link to="/connectus">تواصل معنا <i class="fas fa-phone-volume fa-fw"></i>
               </router-link>
             </li>
             <li>
               <router-link to="/whoweare">
-                من نحن <i class="fas fa-question-circle fa-fw"></i
-              ></router-link>
+                من نحن <i class="fas fa-question-circle fa-fw"></i></router-link>
             </li>
           </div>
 
           <div>
             <li>
-              <router-link to="/myaccount"
-                >حسابي <i class="fa fa-user fa-fw"></i
-              ></router-link>
+              <router-link to="/myaccount">حسابي <i class="fa fa-user fa-fw"></i></router-link>
             </li>
             <li>
-              <router-link to="/login"
-                >تسجيل الدخول <i class="fa fa-sign-in-alt fa-fw"></i
-              ></router-link>
+              <router-link to="/login">تسجيل الدخول <i class="fa fa-sign-in-alt fa-fw"></i></router-link>
             </li>
             <li>
               <a>تسجيل الخروج <i class="fas fa-sign-out-alt fa-fw"></i></a>
             </li>
           </div>
         </ul>
-        <label for="menu-btn" class="menu-btn"
-          ><i class="fas fa-bars"></i
-        ></label>
+        <label for="menu-btn" class="menu-btn"><i class="fas fa-bars"></i></label>
 
         <div class="logo">
           <router-link to="/">
@@ -127,17 +108,19 @@ export default {
 
 <style scoped>
 
+/* 
 nav {
   position: fixed !important;
-  height: 70px;
-  width: 100vw;
-  background-color: #25252c;
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  z-index: 1;
-}
-/* */
+    height: 70px;
+    width: 100vw;
+    background-color: #25252c;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    z-index: 1;
+  }
+  
+  */
 nav > .wrapper {
   position: relative;
   width: 100vw;

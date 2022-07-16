@@ -5,36 +5,16 @@
     </div>
     <div class="signincontainer">
       <h2>تسجيل الدخول</h2>
-      <form @submit.prevent="signin">
+      <form @submit.prevent="handleLogin">
         <div class="form-group">
-          <input
-            type="email"
-            class="form-control"
-            placeholder="البريد الالكتروني"
-            v-model="useremail"
-          />
-          <small
-            id="emailHelp"
-            class="form-text text-muted"
-            v-show="emailerror"
-            >{{ emailerror }}</small
-          >
+          <input type="email" class="form-control" placeholder="البريد الالكتروني" v-model="email" />
+          <small id="emailHelp" class="form-text text-muted" v-show="emailError">{{ emailError }}</small>
         </div>
         <div class="form-group">
-          <input
-            type="password"
-            class="form-control"
-            placeholder="كلمه المرور"
-            v-model="userpass"
-          />
+          <input type="password" class="form-control" placeholder="كلمه المرور" v-model="password" />
         </div>
         <div class="form-group">
-          <small
-            id="emailHelp"
-            class="form-text text-muted"
-            v-show="passworderror"
-            >{{ passworderror }}</small
-          >
+          <small id="emailHelp" class="form-text text-muted" v-show="passwordError">{{ passwordError }}</small>
         </div>
         <div class="paswordcontrols">
           <div>
@@ -56,28 +36,54 @@
 </template>
 
 <script>
+import { useAuthStore } from '@/stores/AuthStore';
+import { storeToRefs } from 'pinia';
+
 export default {
+  setup() {
+    const AuthStore = useAuthStore();
+    return {
+      // you can return the whole store instance to use it in the template
+      AuthStore,
+    }
+  },
   data() {
     return {
-      emailerror: null,
-      passworderror: null,
-      useremail: "",
-      userpass: "",
+      emailError: null,
+      passwordError: null,
+      email: null,
+      password: null
     };
   },
   methods: {
-    signin() {
-      if (this.useremail.length == 0) {
-        this.emailerror = "ادخل البريد الالكتروني";
-      }
-      if (this.userpass.length == 0) {
-        this.passworderror = "ادخل كلمه المرور صحيحه";
-      }
-      //لسه الربط بالباك وتعديل الايرور الجاي من الباك
-      else {
-        this.$router.replace("/");
+    async handleLogin() {
+
+      if (this.isValidateInput()) {
+        this.AuthStore.login(this.email, this.password)
+        router.push('/myaccount');
+        // const response = await this.axios.post('/auth/token/',
+        //   {
+        //     email: this.email,
+        //     password: this.password
+        //   });
+        // console.log(response.data);
+        // localStorage.setItem('token', response.data);
       }
     },
+    isValidateInput() {
+      this.emailError = null
+      this.passwordError = null;
+      let isValid = true
+      if (this.email.length == 0) {
+        this.emailError = "ادخل البريد الالكتروني";
+        isValid = false
+      }
+      if (this.password.length == 0) {
+        this.passwordError = "ادخل كلمه المرور صحيحه";
+        isValid = false
+      }
+      return isValid;
+    }
   },
 };
 </script>
@@ -96,16 +102,16 @@ form {
   text-align: end;
 }
 
-form > div {
+form>div {
   margin: 15px 0px;
   cursor: context-menu !important;
 }
 
-form > div > input {
+form>div>input {
   text-align: end;
 }
 
-form > div > div > label {
+form>div>div>label {
   margin-right: 10px;
 }
 
@@ -133,7 +139,7 @@ button {
   justify-content: space-between;
 }
 
-.forgetpass > a,
+.forgetpass>a,
 small {
   color: #f84949 !important;
 }
@@ -145,49 +151,60 @@ small {
   margin-top: 5px;
 }
 
-div > a {
+div>a {
   text-decoration: none;
 }
+
 @media (max-width: 470px) {
   .signincontainer {
     width: 70vw !important;
   }
+
   button {
     width: 70vw;
   }
+
   img {
     width: 80vw !important;
     margin-bottom: 15px;
   }
+
   .paswordcontrols {
     justify-content: center !important;
     flex-direction: column;
   }
+
   .paswordcontrols .forgetpass {
     display: flex;
     justify-content: start;
   }
+
   .createnewaccount {
     flex-direction: column;
   }
+
   .createnewaccount p {
     margin-bottom: 3px !important;
     display: flex;
     justify-content: end;
   }
 }
+
 @media (min-width: 470px) and (max-width: 560px) {
   .signincontainer {
     width: 60vw !important;
   }
+
   button {
     width: 60vw;
   }
+
   img {
     width: 70vw !important;
     margin-bottom: 15px;
   }
 }
+
 @media (min-width: 560px) and (max-width: 956px) {
   .signincontainer {
     width: 50vw !important;
@@ -196,6 +213,7 @@ div > a {
   button {
     width: 50vw;
   }
+
   img {
     width: 60vw !important;
     margin-bottom: 15px;

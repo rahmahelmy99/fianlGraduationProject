@@ -13,13 +13,10 @@
               <router-link to="/">الرئيسيه <i class="fa fa-home fa-fw"></i></router-link>
             </li>
 
-            <li @mouseover="open" @mouseleave="hide">
-              <router-link to="/volunteer-form" class="desktop-item">
-                <i class="fa fa-caret-down fa-fw"></i> {{ Symbol }}
-              </router-link>
-              <input type="checkbox" id="showDrop" />
-              <label for="showDrop" class="mobile-item">
-                <i class="fa fa-caret-down fa-fw"> </i> {{ Symbol }}</label>
+            <li dir="rtl" @mouseover="open" @mouseleave="hide">
+              <a class=" dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                خدماتنا
+              </a>
               <ul class="services drop-menus" v-show="displayserviceslist">
                 <li>
                   <router-link to="/volunteer-form">تطوع</router-link>
@@ -92,11 +89,21 @@
 </template>
 
 <script>
+import { useAuthStore } from '@/stores/AuthStore';
+
 export default {
+  setup() {
+    const AuthStore = useAuthStore();
+    return {
+      // you can return the whole store instance to use it in the template
+      AuthStore,
+    }
+  },
   data() {
     return {
       Symbol: "خدماتنا",
       displayserviceslist: false,
+      isAuth: this.AuthStore.isAuth
     };
   },
   methods: {

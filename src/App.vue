@@ -10,8 +10,24 @@
 <script>
 import TheHeader from "./components/layout/TheHeader.vue";
 import TheFooter from "./components/layout/TheFooter.vue";
+import { useAuthStore } from '@/stores/AuthStore';
 
 export default {
+  setup() {
+    const AuthStore = useAuthStore();
+    // localStorage.setItem('token', 'lolya ngm');
+    const token = localStorage.getItem('token')
+    console.log('token = ',token);
+    if (token !== null ) {
+      AuthStore.isAuth = true;
+      AuthStore.token = localStorage.getItem('token');
+      console.log(token);
+    }
+    return {
+      // you can return the whole store instance to use it in the template
+      AuthStore,
+    }
+  },
   components: {
     TheHeader,
     TheFooter,

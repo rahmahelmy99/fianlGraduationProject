@@ -64,7 +64,7 @@
               <router-link to="/myaccount">حسابي <i class="fa fa-user fa-fw"></i></router-link>
             </li>
             <li>
-              <a>تسجيل الخروج <i class="fas fa-sign-out-alt fa-fw"></i></a>
+              <a v-on:click="logout">تسجيل الخروج <i class="fas fa-sign-out-alt fa-fw"></i></a>
             </li>
           </div>
           <div v-else="isAuth">
@@ -80,7 +80,7 @@
 
         <div class="logo">
           <router-link to="/">
-            <img src="../.././assets/logo1.png" alt="" width="20" height="15" />
+            <img src="@/assets/logo1.png" alt="" width="20" height="15" />
           </router-link>
         </div>
       </div>
@@ -95,18 +95,25 @@ export default {
   setup() {
     const AuthStore = useAuthStore();
     return {
-      // you can return the whole store instance to use it in the template
       AuthStore,
+    }
+  },
+  computed: {
+    isAuth() {
+      return this.AuthStore.isAuth;
     }
   },
   data() {
     return {
       Symbol: "خدماتنا",
       displayserviceslist: false,
-      isAuth: this.AuthStore.isAuth
+      //Auth: false
     };
   },
   methods: {
+    logout() {
+      this.AuthStore.logout();
+    },
     open() {
       this.displayserviceslist = true;
     },

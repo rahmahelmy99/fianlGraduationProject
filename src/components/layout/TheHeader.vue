@@ -62,15 +62,20 @@
             </li>
           </div>
 
-          <div>
+          <div v-if="isAuth">
             <li>
               <router-link to="/myaccount">حسابي <i class="fa fa-user fa-fw"></i></router-link>
             </li>
             <li>
+              <a>تسجيل الخروج <i class="fas fa-sign-out-alt fa-fw"></i></a>
+            </li>
+          </div>
+          <div v-else="isAuth">
+            <li>
               <router-link to="/login">تسجيل الدخول <i class="fa fa-sign-in-alt fa-fw"></i></router-link>
             </li>
             <li>
-              <a>تسجيل الخروج <i class="fas fa-sign-out-alt fa-fw"></i></a>
+              <router-link to="/signup">إنشاء حساب <i class="fa  fa-user-plus fa-fw"></i></router-link>
             </li>
           </div>
         </ul>
@@ -107,7 +112,6 @@ export default {
 </script>
 
 <style scoped>
-
 /* 
 nav {
   position: fixed !important;
@@ -121,7 +125,7 @@ nav {
   }
   
   */
-nav > .wrapper {
+nav>.wrapper {
   position: relative;
   width: 100vw;
   height: 70px;
@@ -133,7 +137,7 @@ nav > .wrapper {
   align-items: center;
 }
 
-nav > .wrapper > ul {
+nav>.wrapper>ul {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -141,26 +145,27 @@ nav > .wrapper > ul {
   width: 88vw;
 }
 
-nav > .wrapper > ul > div {
+nav>.wrapper>ul>div {
   display: flex;
   flex-direction: row-reverse;
   margin: auto;
 }
 
 li,
-li > a {
+li>a {
   color: white;
   padding: 0px 10px;
   text-decoration: none;
 }
 
 li:hover,
-li > a:hover,
+li>a:hover,
 img:hover {
   cursor: pointer;
   color: #bbbbbb;
 }
-.navbar-nav > div > li > .mobile-item {
+
+.navbar-nav>div>li>.mobile-item {
   display: none;
 }
 
@@ -172,23 +177,24 @@ img:hover {
   position: fixed;
   list-style: none;
   padding: 0px;
-    border: #9a9a9f solid;
-    border-radius: 5px;
+  border: #9a9a9f solid;
+  border-radius: 5px;
 }
 
-.services > li {
+.services>li {
   width: 100%;
   padding: 5px;
   margin: 0px;
 }
 
-.services > li:hover {
+.services>li:hover {
   background-color: #bbbbbb;
 }
 
-.services > li > a {
+.services>li>a {
   color: #25252c;
 }
+
 img {
   width: 50px;
   height: 40px;
@@ -196,10 +202,12 @@ img {
   height: 2.5vw; */
   margin-top: 3px;
 }
+
 input {
   display: none !important;
 }
-.wrapper > .menu-btn {
+
+.wrapper>.menu-btn {
   position: absolute;
   top: 20px;
   right: 30px;
@@ -208,7 +216,8 @@ input {
   cursor: pointer;
   display: none;
 }
-.wrapper > .navbar-nav > .closeBtn {
+
+.wrapper>.navbar-nav>.closeBtn {
   color: #fff !important;
   font-size: 20px !important;
   cursor: pointer;
@@ -222,14 +231,17 @@ input {
   nav {
     z-index: 99 !important;
   }
+
   .logo {
     display: block;
   }
-  .wrapper > .menu-btn,
-  .wrapper > .navbar-nav > .closeBtn {
+
+  .wrapper>.menu-btn,
+  .wrapper>.navbar-nav>.closeBtn {
     display: block;
   }
-  .wrapper > .navbar-nav {
+
+  .wrapper>.navbar-nav {
     position: fixed;
     height: 100%;
     width: 100%;
@@ -244,33 +256,36 @@ input {
     box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.18);
     transition: all 0.3s ease;
   }
-  nav > .wrapper > ul {
+
+  nav>.wrapper>ul {
     display: flex;
     align-items: center;
   }
 
-  nav > .wrapper > ul > div {
+  nav>.wrapper>ul>div {
     display: flex;
     flex-direction: column;
     margin: auto;
     height: auto;
   }
 
-  #menu-btn:checked ~ .navbar-nav {
+  #menu-btn:checked~.navbar-nav {
     right: 0%;
   }
-  #menu-btn:checked ~ .menu-btn {
-    display: none !important  ;
+
+  #menu-btn:checked~.menu-btn {
+    display: none !important;
   }
 
-  #close-btn:checked ~ .menu-btn {
+  #close-btn:checked~.menu-btn {
     display: block;
   }
-  .navbar-nav > li {
+
+  .navbar-nav>li {
     margin: 15px 10px;
   }
 
-  li > a {
+  li>a {
     display: block !important;
     font-size: 20px !important;
     padding: 9px 15px;
@@ -291,18 +306,18 @@ input {
     top: 150px !important;
   }
 
-  .services > li {
+  .services>li {
     width: 100%;
     padding: 1.5px;
     margin: 0px;
     border-bottom: 0.5px solid rgba(0, 0, 0, 0.15);
   }
 
-  .services > li:hover {
+  .services>li:hover {
     background-color: #bbbbbb;
   }
 
-  .services > li > a {
+  .services>li>a {
     padding: 0px 5px;
     font-size: 15px !important;
     color: #25252c;
@@ -315,16 +330,17 @@ input {
     height: 3.5vw !important; */
     margin-top: 3px;
   }
-  #showDrop:checked ~ ul {
+
+  #showDrop:checked~ul {
     max-height: 100%;
     transition: all ease 0.5ms;
   }
 
-  .navbar-nav > div > li > .desktop-item {
+  .navbar-nav>div>li>.desktop-item {
     display: none !important;
   }
 
-  .navbar-nav > div > li > .mobile-item {
+  .navbar-nav>div>li>.mobile-item {
     display: block;
     color: #f2f2f2;
     font-size: 20px;
@@ -335,22 +351,24 @@ input {
     transition: all 0.3s ease;
   }
 
-  .navbar-nav > div > li > .mobile-item > a:hover {
+  .navbar-nav>div>li>.mobile-item>a:hover {
     background: #a7adb3;
   }
-  .wrapper > .drop-menu > li {
+
+  .wrapper>.drop-menu>li {
     margin: 0;
   }
 
-  .wrapper > .drop-menu > li > a {
+  .wrapper>.drop-menu>li>a {
     border-radius: 5px;
     font-size: 16px !important;
   }
 }
 
 @media (min-width: 960px) and (max-width: 1170) {
+
   li,
-  li > a {
+  li>a {
     font-size: 12px !important;
     padding: 0 5px;
   }

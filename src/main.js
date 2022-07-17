@@ -25,16 +25,16 @@ app.use(createPinia())
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faPhone,faEnvelope,faLocationDot,faSearch , faPhoneVolume, faQuestion, faSignOutAlt, faBars, faCaretDown, faTimes, faHome, faSignInAlt, faUser, faQuestionCircle } from '@fortawesome/free-solid-svg-icons'
+import { faPhone, faEnvelope, faLocationDot, faSearch, faPhoneVolume, faQuestion, faSignOutAlt, faBars, faCaretDown, faTimes, faHome, faSignInAlt, faUser, faQuestionCircle, faUserPlus } from '@fortawesome/free-solid-svg-icons'
 
 
-library.add(faPhone,faEnvelope,faLocationDot,faSearch, faPhoneVolume, faQuestion, faSignOutAlt, faBars, faCaretDown, faTimes, faHome, faSignInAlt, faUser, faQuestionCircle )
+library.add(faPhone, faEnvelope, faLocationDot, faSearch, faPhoneVolume, faQuestion, faSignOutAlt, faBars, faCaretDown, faTimes, faHome, faSignInAlt, faUser, faQuestionCircle, faUserPlus)
 
 app.component('fa', FontAwesomeIcon)
 app.use(router)
 app.use(VueAxios, axios)
 
-app.component('base-button',basebutton)
-app.component('base-wrapper',basewrapper)
+app.component('base-button', basebutton)
+app.component('base-wrapper', basewrapper)
 
 app.mount('#app')

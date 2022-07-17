@@ -188,7 +188,7 @@ img:hover {
   position: fixed;
   list-style: none;
   padding: 0px;
-  right: 300px;
+  /*  right: 300px;*/
   border: #9a9a9f solid;
   border-radius: 5px;
   top: 46px;
@@ -303,7 +303,7 @@ input {
     position: fixed;
     list-style: none;
     padding: 0px;
-    right: 200px;
+    /* right: 200px; */
     border: #9a9a9f solid;
     border-radius: 5px;
     top: 150px !important;

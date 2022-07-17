@@ -179,7 +179,7 @@ textarea::placeholder {
     width: 50vw;
   }
   img {
-    width: 60vw;
+    width: 50vw;
   }
 }
 </style>

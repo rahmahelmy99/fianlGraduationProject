@@ -80,6 +80,7 @@ export default {
   height: 40vh;
   padding: 15px;
   border-radius: 10px;
+  max-height: 50vw;
 }
 
 h6 {

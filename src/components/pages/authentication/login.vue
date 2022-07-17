@@ -59,8 +59,12 @@ export default {
     async handleLogin() {
 
       if (this.isValidateInput()) {
-        this.AuthStore.login(this.email, this.password)
-        router.push('/myaccount');
+        this.AuthStore.login(this.email, this.password).then((value) => {
+          this.$router.replace('/myaccount');
+          console.log(value);
+          // expected output: "Success!"
+        });
+
         // const response = await this.axios.post('/auth/token/',
         //   {
         //     email: this.email,

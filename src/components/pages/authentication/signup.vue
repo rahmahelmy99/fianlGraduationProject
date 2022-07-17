@@ -85,7 +85,6 @@
 
 <script>
 import { useAuthStore } from '@/stores/AuthStore';
-import { storeToRefs } from 'pinia';
 
 export default {
   setup() {
@@ -136,27 +135,7 @@ export default {
           blood: this.bloodType,
         }
       )
-      router.push('/myaccount');
-      //}
-      // const reg = await this.axios.post('/users/create/',
-      //   {
-      //     name: this.name,
-      //     email: this.email,
-      //     password: this.password,
-      //     age: this.age,
-      //     phone: this.phone,
-      //     address: this.address,
-      //     nat_ID: this.natID,
-      //     blood: this.bloodType,
-      //   });
-      // const response = await this.axios.post('/auth/token/',
-      //   {
-      //     email: this.email,
-      //     password: this.password
-      //   });
-      // localStorage.setItem('token', response.data);
-      // this.$router.replace("/");
-
+      this.$router.push('/myaccount');
 
     },
     isValidateInput() {

@@ -1,54 +1,76 @@
+
+<script>
+export default {
+  setup() {
+
+    return 0
+  },
+  data() {
+    return {
+      name: 'name',
+      email: 'mail',
+      phone: '010',
+      blood: 'o+',
+      address: 'home'
+    };
+  },
+  methods: {
+
+  },
+};
+</script>
 <template>
-    <div class="col-lg-8">
-      <div class="card mb-4">
-        <div class="card-body">
-          <div class="row">
-            <div class="col-sm-3">
-              <p class="mb-0">Full Name</p>
-            </div>
-            <div class="col-sm-9">
-              <p class="text-muted mb-0">Johnatan Smith</p>
-            </div>
+  <div dir="rtl" class="col-lg-8 m-auto">
+    <div class="card mb-4">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-3">
+            <p class="mb-0">الاسم</p>
           </div>
-          <hr>
-          <div class="row">
-            <div class="col-sm-3">
-              <p class="mb-0">Email</p>
-            </div>
-            <div class="col-sm-9">
-              <p class="text-muted mb-0">example@example.com</p>
-            </div>
+          <div class="col-sm-9">
+            <p class="text-muted mb-0">{{ name }}</p>
           </div>
-          <hr>
-          <div class="row">
-            <div class="col-sm-3">
-              <p class="mb-0">Phone</p>
-            </div>
-            <div class="col-sm-9">
-              <p class="text-muted mb-0">(097) 234-5678</p>
-            </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-3">
+            <p class="mb-0">الايمل</p>
           </div>
-          <hr>
-          <div class="row">
-            <div class="col-sm-3">
-              <p class="mb-0">Mobile</p>
-            </div>
-            <div class="col-sm-9">
-              <p class="text-muted mb-0">(098) 765-4321</p>
-            </div>
+          <div class="col-sm-9">
+            <p class="text-muted mb-0">{{ email }}</p>
           </div>
-          <hr>
-          <div class="row">
-            <div class="col-sm-3">
-              <p class="mb-0">Address</p>
-            </div>
-            <div class="col-sm-9">
-              <p class="text-muted mb-0">Bay Area, San Francisco, CA</p>
-            </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-3">
+            <p class="mb-0">رقم الموبيل</p>
+          </div>
+          <div class="col-sm-9">
+            <p class="text-muted mb-0">{{ phone }}</p>
+          </div>
+        </div>
+
+        <hr>
+        <div class="row">
+          <div class="col-sm-3">
+            <p class="mb-0">العنوان</p>
+          </div>
+          <div class="col-sm-9">
+            <p class="text-muted mb-0">{{ address }}</p>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-3">
+            <p class="mb-0">فصيلة الدم</p>
+          </div>
+          <div class="col-sm-9">
+            <p class="text-muted mb-0">{{ blood }}</p>
           </div>
         </div>
       </div>
     </div>
+  </div>
 </template>
 
 <style scoped>

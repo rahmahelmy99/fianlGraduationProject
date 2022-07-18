@@ -62,16 +62,7 @@ export default {
         this.AuthStore.login(this.email, this.password).then((value) => {
           this.$router.replace('/myaccount');
           console.log(value);
-          // expected output: "Success!"
         });
-
-        // const response = await this.axios.post('/auth/token/',
-        //   {
-        //     email: this.email,
-        //     password: this.password
-        //   });
-        // console.log(response.data);
-        // localStorage.setItem('token', response.data);
       }
     },
     isValidateInput() {

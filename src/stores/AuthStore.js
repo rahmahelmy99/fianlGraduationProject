@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import jwt_decode from "jwt-decode";
 
 const apiURL = 'http://localhost:8000/api'
 export const useAuthStore = defineStore('AuthStore', {
@@ -14,6 +15,7 @@ export const useAuthStore = defineStore('AuthStore', {
                 {
                     method: 'POST',
                     headers: {
+                        'Accept': 'application/json',
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify(
@@ -21,12 +23,15 @@ export const useAuthStore = defineStore('AuthStore', {
                             email: email,
                             password: password
                         })
+                }).then(r => r.json())
+                .then(data => {
+                    this.token = data.access
+                    console.log("received decoded data", jwt_decode(this.token))
+                    localStorage.setItem('token', this.token);
+                    this.isAuth = true
+                    return data.access
                 });
-            console.log("In login", response.data);
-            this.token = response.data
-            this.isAuth = true
-            localStorage.setItem('token', response.data);
-            return response.data
+            return response
         },
         async signup(data) {
             const { name, email, password, age, phone, address, nat_ID, blood } = data;

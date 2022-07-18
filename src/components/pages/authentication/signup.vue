@@ -134,8 +134,11 @@ export default {
           nat_ID: this.natID,
           blood: this.bloodType,
         }
-      )
-      this.$router.push('/myaccount');
+      ).then(() => {
+        console.log('Sucess sign Up');
+        this.$router.push('/myaccount');
+
+      }).catch((error) => console.log(error))
 
     },
     isValidateInput() {

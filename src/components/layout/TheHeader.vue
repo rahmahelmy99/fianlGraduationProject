@@ -113,6 +113,7 @@ export default {
   methods: {
     logout() {
       this.AuthStore.logout();
+      this.$router.push('/');
     },
     open() {
       this.displayserviceslist = true;
@@ -126,19 +127,7 @@ export default {
 </script>
 
 <style scoped>
-/* 
-nav {
-  position: fixed !important;
-    height: 70px;
-    width: 100vw;
-    background-color: #25252c;
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    z-index: 1;
-  }
-  
-  */
+
 nav>.wrapper {
   position: relative;
   width: 100vw;

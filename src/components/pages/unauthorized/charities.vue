@@ -11,12 +11,7 @@
           {{ item }}
         </option>
       </select>
-      <input
-        type="text"
-        placeholder="بحث عن جمعيه بالاسم"
-        v-if="searchtype == 'الاسم'"
-        v-model="charityname"
-      />
+      <input type="text" placeholder="بحث عن جمعيه بالاسم" v-if="searchtype == 'الاسم'" v-model="charityname" />
       <!--من الباك-->
       <select v-if="searchtype == 'التخصص'" v-model="searchvalue">
         <option :value="null" disabled selected>تخصصات الجمعيات</option>
@@ -32,12 +27,9 @@
         </option>
       </select>
       <small class="form-text text-muted" v-show="searchvalueerror">{{
-        searchvalueerror
+          searchvalueerror
       }}</small>
-      <span
-        @click="click"
-        v-if="(searchtype == 'التخصص') | (searchtype == 'المكان')"
-      >
+      <span @click="click" v-if="(searchtype == 'التخصص') | (searchtype == 'المكان')">
         <i class="fa fa-search" aria-hidden="true"></i>
       </span>
     </div>
@@ -48,24 +40,16 @@
         <img class="card-img-top" :src="charity.src" alt="Charty logo" />
         <div class="card-body">
           <h5>
-            <router-link
-              :to="`/charitypage/${charity.charityid}`"
-              class="card-title"
-              >{{ charity.name }}</router-link
-            >
+            <router-link :to="`/charitypage/${charity.charityid}`" class="card-title">{{ charity.name }}</router-link>
           </h5>
           <p class="card-text">{{ charity.details }}</p>
           <div class="btncontainer">
-            <base-button class="btn"
-              ><router-link :to="`/donate-form/${charity.charityid}`"
-                >تبرع</router-link
-              ></base-button
-            >
-            <base-button class="btn"
-              ><router-link :to="`/volunteer-form/${charity.charityid}`"
-                >تطوع</router-link
-              ></base-button
-            >
+            <base-button class="btn">
+              <router-link :to="`/donate-form/${charity.charityid}`">تبرع</router-link>
+            </base-button>
+            <base-button class="btn">
+              <router-link :to="`/volunteer-form/${charity.charityid}`">تطوع</router-link>
+            </base-button>
           </div>
         </div>
       </div>
@@ -94,6 +78,8 @@ export default {
         {
           src: require("@/assets/rsala.png"),
           name: "جمعيه رساله",
+          spec: "كفاله ايتام",
+          loc: 'جديله',
           details: `
             الان اصبح لرسالة اكثر من 60 فرعا منتشرة في انحاء مصر و يتطوع بها كل عام اكثر
             من 200 الف متطوع يخدمون ملايين المصريين في حوالي 30 نشاط تطوعي تشمل رعاية
@@ -109,6 +95,8 @@ export default {
         {
           src: require("@/assets/lifemaker.jpg"),
           name: "جمعيه صناع الحياه",
+          spec: "رعايه كبار مسنين",
+          loc: "حي الجامعه",
           details: `
             مؤسسة صناع الحياة مصر هادفة للربح أسست عام وتعمل طبقا لقانون
             الجمعيات والمؤسسات الأهلية المصري. المؤسسة قائمة على التطوع وتعمل
@@ -125,6 +113,9 @@ export default {
         {
           src: require("@/assets/lifemaker.jpg"),
           name: "جمعيه صناع الحياه",
+          spec: "رعايه كبار مسنين",
+          loc: "حي الجامعه",
+
           details: `
             مؤسسة صناع الحياة مصر هادفة للربح أسست عام وتعمل طبقا لقانون
             الجمعيات والمؤسسات الأهلية المصري. المؤسسة قائمة على التطوع وتعمل
@@ -141,6 +132,8 @@ export default {
         {
           src: require("@/assets/rsala.png"),
           name: "جمعيه رساله",
+          spec: "كفاله ايتام",
+          loc: 'جديله',
           details: `
             الان اصبح لرسالة اكثر من 60 فرعا منتشرة في انحاء مصر و يتطوع بها كل عام اكثر
             من 200 الف متطوع يخدمون ملايين المصريين في حوالي 30 نشاط تطوعي تشمل رعاية
@@ -179,7 +172,16 @@ export default {
   computed: {
     filterchards: function () {
       return this.charitydata.filter((charity) => {
-        return charity.name.match(this.charityname);
+        if (this.searchtype == 'الاسم') {
+          return charity.name.match(this.charityname);
+        } else if (this.searchtype == 'التخصص') {
+         //console.log(this.searchtype);
+          return charity.spec.match(this.searchvalue);
+        } else if (this.searchtype == 'المكان'){
+          return charity.loc.match(this.searchvalue);
+        }else{
+          return true;
+        }
       });
     },
   },
@@ -196,7 +198,8 @@ export default {
   align-items: center;
   flex-direction: column;
 }
-div > div {
+
+div>div {
   display: flex;
   flex-direction: row-reverse;
   width: 45vw;
@@ -204,10 +207,12 @@ div > div {
   margin: 5px 0px;
   align-items: baseline;
 }
+
 select {
   width: 15vw;
   text-align: right;
 }
+
 input {
   text-align: right;
 }
@@ -219,134 +224,166 @@ input {
   width: 90vw;
   flex-wrap: wrap;
 }
+
 .card {
   width: 33vw;
 }
+
 .card-img-top {
   height: 19vh;
   width: 27vw;
 }
+
 .chartycard {
   display: flex;
   flex-direction: column;
   text-align: right;
   align-items: center;
 }
+
 .card-body {
   display: flex;
   flex-direction: column;
   width: auto;
   align-items: center;
 }
+
 .card-title {
   color: black;
   font-weight: 500;
   line-height: 1.2;
   margin-bottom: 0.75rem;
 }
+
 a {
   color: white;
   text-decoration: none;
 }
+
 .btncontainer {
   width: 29vw;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
 }
+
 .btn {
   width: 12vw;
   margin-top: 0px;
 }
+
 @media (max-width: 350px) {
-  div > div {
+  div>div {
     display: flex;
     flex-direction: row-reverse;
     width: 95vw;
   }
-  div > .card {
+
+  div>.card {
     width: 85vw;
   }
+
   select {
     width: 40vw;
   }
+
   .btncontainer {
     width: 70vw;
   }
+
   .btn {
     width: 35vw;
     margin: 7px;
   }
+
   .card-body {
     font-size: 14px;
   }
+
   h1 {
     font-size: 30px;
   }
+
   .card-img-top {
     height: 32vh;
     width: 50vw;
   }
 }
+
 @media (min-width: 350px) and (max-width: 570px) {
   .charitiescontiner {
     display: flex;
     flex-direction: column;
     align-content: center;
   }
-  div > div {
+
+  div>div {
     display: flex;
     flex-direction: row-reverse;
     width: 80vw;
   }
-  div > .card {
+
+  div>.card {
     width: 70vw;
   }
+
   .card-img-top {
     height: 30vh;
     width: 40vw;
   }
+
   select {
     width: 40vw;
   }
+
   .btncontainer {
     width: 65vw;
   }
+
   .btn {
     width: 25vw;
     margin: 10px;
   }
+
   h1 {
     font-size: 35 px;
   }
 }
+
 @media (min-width: 570px) and (max-width: 850px) {
   .charitiescontiner {
     display: flex;
     flex-direction: column;
     align-content: center;
   }
-  div > div {
+
+  div>div {
     display: flex;
     flex-direction: row-reverse;
     width: 65vw;
   }
-  div > .card {
+
+  div>.card {
     width: 60vw;
   }
+
   .card-body {
     width: 59vw;
   }
+
   select {
     width: 30vw;
   }
+
   .card-img-top {
     height: 26vh;
     width: 34vw;
   }
+
   .btncontainer {
     width: 50vw;
   }
+
   .btn {
     width: 20vw;
     margin: 5px;

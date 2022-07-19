@@ -30,7 +30,7 @@
           searchvalueerror
       }}</small>
       <span @click="click" v-if="(searchtype == 'التخصص') | (searchtype == 'المكان')">
-        <i class="fa fa-search" aria-hidden="true"></i>
+        <!-- <i class="fa fa-search" aria-hidden="true"></i> -->
       </span>
     </div>
   </div>
@@ -174,10 +174,10 @@ export default {
       return this.charitydata.filter((charity) => {
         if (this.searchtype == 'الاسم') {
           return charity.name.match(this.charityname);
-        } else if (this.searchtype == 'التخصص') {
+        } else if (this.searchtype == 'التخصص'  &&  this.searchvalue != null ) {
          //console.log(this.searchtype);
           return charity.spec.match(this.searchvalue);
-        } else if (this.searchtype == 'المكان'){
+        } else if (this.searchtype == 'المكان' &&  this.searchvalue != null){
           return charity.loc.match(this.searchvalue);
         }else{
           return true;
